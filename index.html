@@ -81,6 +81,27 @@ footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
 .reward-icons{font-size:1.5rem;letter-spacing:4px;min-height:28px}
 @media(max-width:520px){.math-path{padding:18px}.level-track{gap:5px}.level-step{font-size:.72rem;padding:9px 3px}.lesson-card{padding:17px}.lesson-answer{min-width:65px;padding:12px 15px}}
 
+
+.pet-growth{margin-top:18px;padding:18px;border-radius:18px;background:linear-gradient(135deg,#f2efff,#effbf6);display:flex;align-items:center;gap:18px}
+.pet-growth-face{font-size:4rem;min-width:76px;text-align:center}
+.pet-growth h3{margin:0 0 5px}.pet-growth p{margin:0;color:var(--muted);line-height:1.45}
+.parent-area{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:0 8px 24px #5140a00a}
+.parent-area p{color:var(--muted);line-height:1.5}
+.parent-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.parent-form input{flex:1;min-width:210px;border:1px solid #dcd6f3;border-radius:12px;padding:13px 14px;font:inherit}
+.parent-form button,.report-toggle{border:0;border-radius:12px;padding:12px 17px;background:var(--purple);color:white;font-weight:800;cursor:pointer}
+.parent-status{margin-top:12px;font-size:.9rem;color:#315d4d;font-weight:700;min-height:22px}
+.report-toggle{margin-top:12px;background:#eeeaff;color:#5845c6}
+.parent-report{margin-top:18px;padding:18px;border-radius:16px;background:#faf9ff}
+.report-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
+.report-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;font-weight:800}
+.report-box small{display:block;color:var(--muted);font-weight:500;margin-top:4px}
+.report-table-wrap{overflow-x:auto}
+.report-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:12px}
+.report-table th,.report-table td{text-align:left;padding:9px;border-bottom:1px solid #e9e5f5;white-space:nowrap}
+.report-table th{color:var(--muted)}
+@media(max-width:520px){.parent-area{padding:18px}.report-summary{grid-template-columns:1fr}.pet-growth{align-items:flex-start}}
+
 </style>
 </head>
 <body>
@@ -135,6 +156,38 @@ footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
     <button class="pet" data-pet="🐠" data-name="Fish"><span class="animal">🐠</span>Fish</button>
   </div>
   <div class="selection" id="selection" aria-live="polite">Your companion is a Dog 🐶</div>
+
+  <div class="pet-growth" aria-live="polite">
+    <div class="pet-growth-face" id="pet-growth-face">🐶</div>
+    <div><h3 id="pet-growth-title">Your companion is a little learner too!</h3>
+    <p id="pet-growth-description">Master maths levels to help your companion grow and collect special accessories.</p></div>
+  </div>
+</section>
+
+<section class="parent-area" id="parent-area">
+  <h2>Parent progress reports</h2>
+  <p>Add a parent or guardian email to set up the report profile. In this prototype, the address and learning records stay in this browser only. Email reports will need a secure server connection before they can be sent.</p>
+  <form class="parent-form" id="parent-form">
+    <input id="parent-email" type="email" autocomplete="email" placeholder="Parent or guardian email address" required aria-label="Parent or guardian email address">
+    <button type="submit">Save parent email</button>
+  </form>
+  <div class="parent-status" id="parent-status" aria-live="polite"></div>
+  <button class="report-toggle" id="report-toggle" type="button">View learning report</button>
+  <div class="parent-report" id="parent-report" hidden>
+    <h3>Learning report</h3>
+    <p id="report-email-label">Parent email not set.</p>
+    <div class="report-summary">
+      <div class="report-box" id="report-total">0<small>Questions answered</small></div>
+      <div class="report-box" id="report-correct">0<small>Correct answers</small></div>
+      <div class="report-box" id="report-accuracy">0%<small>Accuracy</small></div>
+    </div>
+    <h4>Topics to practise</h4>
+    <p id="weak-topics">There are no results yet. Complete some questions to see learning patterns.</p>
+    <h4>Recent questions</h4>
+    <div class="report-table-wrap">
+      <table class="report-table"><thead><tr><th>Question</th><th>Child's answer</th><th>Correct answer</th><th>Result</th></tr></thead><tbody id="report-rows"><tr><td colspan="4">No questions recorded yet.</td></tr></tbody></table>
+    </div>
+  </div>
 </section>
 </main>
 
@@ -203,7 +256,14 @@ try{
 
   let operation = 'addition';
   let questionNo = 0, correct = 0, answer = 0, locked = false, active = false;
+
   let sessionCookies = [];
+  const historyKey = 'mathquest-question-history-v1';
+  const parentKey = 'mathquest-parent-email-v1';
+  let questionHistory = [];
+  let parentEmail = '';
+  try { questionHistory = JSON.parse(localStorage.getItem(historyKey) || '[]'); } catch(e) { questionHistory = []; }
+  try { parentEmail = localStorage.getItem(parentKey) || ''; } catch(e) {}
 
   const $ = id => document.getElementById(id);
   const addTab = $('addition-tab'), subTab = $('subtraction-tab');
@@ -211,7 +271,72 @@ try{
   const question = $('lesson-question'), answers = $('lesson-answers');
   const feedback = $('lesson-feedback'), note = $('lesson-note');
   const qProgress = $('question-progress'), cProgress = $('correct-progress');
+
   const cookieCount = $('cookie-count'), rewardIcons = $('reward-icons');
+  const petFace = $('pet-growth-face'), petTitle = $('pet-growth-title'), petDescription = $('pet-growth-description');
+
+  function selectedPet() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('mathquest-pet') || 'null');
+      return saved || {name:'Dog', pet:'🐶'};
+    } catch(e) { return {name:'Dog', pet:'🐶'}; }
+  }
+  function renderPetGrowth() {
+    const totalMastered = savedState.addition.completed.length + savedState.subtraction.completed.length;
+    const pet = selectedPet();
+    const stages = [
+      {face:pet.pet, title:`${pet.name} is your little companion`, desc:'Keep learning together. Your companion will grow as you master maths levels.'},
+      {face:pet.pet + ' 🎀', title:'A first special accessory!', desc:'You mastered a level. Your companion has earned a cute accessory.'},
+      {face:pet.pet + ' 🧸', title:'Your companion is growing!', desc:'Two levels mastered! Your friend has a new toy to enjoy.'},
+      {face:pet.pet + ' 🏅', title:'A confident MathQuest explorer!', desc:'Four levels mastered. Your companion is collecting special rewards.'},
+      {face:pet.pet + ' 👑', title:'MathQuest champion companion!', desc:'Amazing progress! Your companion has reached the top growth stage.'}
+    ];
+    const stageIndex = totalMastered >= 8 ? 4 : totalMastered >= 5 ? 3 : totalMastered >= 3 ? 2 : totalMastered >= 1 ? 1 : 0;
+    petFace.textContent = stages[stageIndex].face;
+    petTitle.textContent = stages[stageIndex].title;
+    petDescription.textContent = stages[stageIndex].desc;
+  }
+  function renderParentReport() {
+    $('parent-email').value = parentEmail;
+    $('report-email-label').textContent = parentEmail ? `Report profile: ${parentEmail}` : 'Parent email not set.';
+    const total = questionHistory.length;
+    const right = questionHistory.filter(x => x.correct).length;
+    $('report-total').innerHTML = `${total}<small>Questions answered</small>`;
+    $('report-correct').innerHTML = `${right}<small>Correct answers</small>`;
+    $('report-accuracy').innerHTML = `${total ? Math.round(right / total * 100) : 0}%<small>Accuracy</small>`;
+    const weak = {};
+    questionHistory.filter(x => !x.correct).forEach(x => {
+      const key = `${x.operation === 'addition' ? 'Addition' : 'Subtraction'} up to ${x.limit}`;
+      weak[key] = (weak[key] || 0) + 1;
+    });
+    const weakList = Object.entries(weak).sort((a,b) => b[1]-a[1]).slice(0,3);
+    $('weak-topics').textContent = weakList.length
+      ? weakList.map(([topic,count]) => `${topic}: ${count} incorrect answer${count===1?'':'s'}`).join(' · ')
+      : (total ? 'No repeated difficulties recorded so far. Great work!' : 'There are no results yet. Complete some questions to see learning patterns.');
+    const tbody = $('report-rows');
+    tbody.innerHTML = '';
+    questionHistory.slice(-25).reverse().forEach(x => {
+      const tr = document.createElement('tr');
+      [x.question, String(x.given), String(x.answer), x.correct ? '✓ Correct' : 'Needs practice'].forEach(value => {
+        const td = document.createElement('td'); td.textContent = value; tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    if (!total) tbody.innerHTML = '<tr><td colspan="4">No questions recorded yet.</td></tr>';
+  }
+  $('parent-form').addEventListener('submit', event => {
+    event.preventDefault();
+    parentEmail = $('parent-email').value.trim();
+    try { localStorage.setItem(parentKey, parentEmail); } catch(e) {}
+    $('parent-status').textContent = 'Parent email saved in this browser. Email reports are not sent yet.';
+    renderParentReport();
+  });
+  $('report-toggle').addEventListener('click', () => {
+    const report = $('parent-report');
+    report.hidden = !report.hidden;
+    if (!report.hidden) renderParentReport();
+    $('report-toggle').textContent = report.hidden ? 'View learning report' : 'Hide learning report';
+  });
 
   function current() { return savedState[operation]; }
   function save() {
@@ -282,6 +407,20 @@ try{
     if (locked) return;
     locked = true;
     [...answers.querySelectorAll('button')].forEach(button => button.disabled = true);
+    const shownQuestion = question.textContent;
+    const wasCorrect = value === answer;
+    questionHistory.push({
+      question: shownQuestion,
+      given: value,
+      answer,
+      correct: wasCorrect,
+      operation,
+      limit: limits[current().level],
+      level: current().level + 1,
+      time: new Date().toISOString()
+    });
+    if (questionHistory.length > 5000) questionHistory = questionHistory.slice(-5000);
+    try { localStorage.setItem(historyKey, JSON.stringify(questionHistory)); } catch(e) {}
     if (value === answer) {
       correct += 1;
       current().cookies += 1;
@@ -291,7 +430,7 @@ try{
     } else {
       feedback.textContent = `Good try! The answer is ${answer}. Mistakes help us learn — keep going! 💛`;
     }
-    save(); render();
+    save(); render(); renderParentReport();
     const next = document.createElement('button');
     next.type = 'button'; next.className = 'lesson-main-btn';
     next.textContent = questionNo === 20 ? 'See level result' : 'Next question';
@@ -324,7 +463,7 @@ try{
       retry.className = 'lesson-main-btn'; retry.type = 'button'; retry.textContent = 'Try this level again';
       retry.addEventListener('click', startLevel); answers.appendChild(retry);
     }
-    save(); render();
+    save(); render(); renderPetGrowth(); renderParentReport();
   }
   function switchOperation(next) {
     operation = next; questionNo = 0; correct = 0; active = false;
@@ -342,7 +481,8 @@ try{
   addTab.addEventListener('click', () => switchOperation('addition'));
   subTab.addEventListener('click', () => switchOperation('subtraction'));
   $('begin-level').addEventListener('click', startLevel);
-  render();
+  render(); renderPetGrowth(); renderParentReport();
+  document.querySelectorAll('.pet').forEach(button => button.addEventListener('click', () => setTimeout(renderPetGrowth, 0)));
 })();
 
 </script>
