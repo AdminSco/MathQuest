@@ -17,7 +17,9 @@ h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.02;letter-spacing:-2.5px;mar
 h1 span{color:var(--purple)}.intro{font-size:1.1rem;line-height:1.65;color:var(--muted);max-width:540px}
 .hero-art{min-height:250px;border-radius:26px;background:linear-gradient(145deg,#eeeaff,#e3f8ef);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .hero-art .sun{position:absolute;width:150px;height:150px;border-radius:50%;background:#ffe7a8;right:13%;top:12%}
-.mascots{position:relative;z-index:1;font-size:clamp(5rem,12vw,8rem);filter:drop-shadow(0 12px 7px #4b3a301c)}
+.mascots{position:relative;z-index:1;display:flex;align-items:end;gap:5px;filter:drop-shadow(0 12px 7px #4b3a301c)}
+.child-mascot{width:clamp(105px,17vw,150px);height:auto}
+.pet-friend{font-size:clamp(4rem,9vw,6rem);padding-bottom:8px}
 .section-title{margin:42px 0 18px;display:flex;align-items:end;justify-content:space-between;gap:15px}
 h2{font-size:1.65rem;margin:0;letter-spacing:-.7px}.section-title p{margin:6px 0 0;color:var(--muted)}
 .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
@@ -45,7 +47,24 @@ footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
     <h1>Make maths an <span>adventure.</span></h1>
     <p class="intro">A friendly learning journey that grows with every learner — from first numbers to university-level challenges. Practise, make progress and explore new worlds along the way.</p>
   </div>
-  <div class="hero-art" aria-label="MathQuest mascot illustration"><div class="sun"></div><div class="mascots">🧒 🐶</div></div>
+  <div class="hero-art" aria-label="MathQuest mascot illustration">
+    <div class="sun"></div>
+    <div class="mascots">
+      <svg class="child-mascot" viewBox="0 0 150 170" role="img" aria-label="Friendly child mascot">
+        <path d="M27 162c3-28 20-43 48-43s45 15 48 43" fill="#6956d9"/>
+        <path d="M58 111h34v25c-10 9-24 9-34 0z" fill="#dca17e"/>
+        <ellipse cx="75" cy="70" rx="43" ry="49" fill="#e9bd9e"/>
+        <path d="M33 67c-4-34 14-56 43-56 28 0 47 18 44 53-9-9-15-20-18-29-16 14-39 19-69 17z" fill="#594237"/>
+        <path d="M39 48c8-22 24-31 44-29 17 2 28 11 35 28-19-8-43-11-79 1z" fill="#594237"/>
+        <ellipse cx="60" cy="73" rx="3.5" ry="4.5" fill="#354052"/>
+        <ellipse cx="90" cy="73" rx="3.5" ry="4.5" fill="#354052"/>
+        <path d="M66 94q9 7 18 0" fill="none" stroke="#9a5d55" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="48" cy="88" r="6" fill="#e7a18f" opacity=".5"/>
+        <circle cx="102" cy="88" r="6" fill="#e7a18f" opacity=".5"/>
+      </svg>
+      <span class="pet-friend">🐶</span>
+    </div>
+  </div>
 </section>
 
 <section>
