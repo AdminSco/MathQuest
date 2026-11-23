@@ -3,74 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#171b3b">
-<title>MathQuest — One journey. Every age.</title>
+<title>MathQuest – One journey. Every age.</title>
 <style>
-:root{--night:#171b3b;--ink:#242747;--muted:#747894;--violet:#7868ef;--gold:#ffd77a;--paper:#fffdf8;--line:#eceaf6}
-*{box-sizing:border-box}body{margin:0;background:#f4f3fb;color:var(--ink);font-family:Inter,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif}
-button{font:inherit;cursor:pointer} .hero{background:radial-gradient(circle at 80% 15%,#5446a8 0,transparent 28%),linear-gradient(125deg,#171b3b,#292653 65%,#40356e);color:white;padding:24px max(5vw,20px) 56px;position:relative;overflow:hidden}
-nav{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;font-size:1.35rem;letter-spacing:.2px}.brand span{color:var(--gold)}.navtag{font-size:.88rem;color:#d9d7f5}
-.hero-inner{max-width:1160px;margin:62px auto 0;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
-.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.75rem;color:#c9c2ff;font-weight:800}.hero h1{font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.02;margin:14px 0 18px;max-width:700px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:1.08rem;line-height:1.7;color:#e0def5;max-width:590px}.hero-visual{min-height:290px;border:1px solid #ffffff28;border-radius:30px;background:linear-gradient(145deg,#ffffff20,#ffffff08);display:grid;place-items:center;position:relative}.orb{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff4c8,#ffd77a 42%,#f49b75 75%);display:grid;place-items:center;font-size:7rem;box-shadow:0 0 80px #ffd77a55}.float{position:absolute;background:#fff;color:#35325c;border-radius:16px;padding:10px 14px;font-weight:800;box-shadow:0 10px 30px #11142b40}.f1{top:25px;left:18px}.f2{right:18px;bottom:25px}
-main{max-width:1160px;margin:-22px auto 60px;padding:0 20px;position:relative}.intro{background:white;border-radius:22px;padding:24px 28px;box-shadow:0 12px 35px #25204b12;display:flex;justify-content:space-between;gap:20px;align-items:center}.intro h2{margin:0 0 6px;font-size:1.35rem}.intro p{margin:0;color:var(--muted);line-height:1.5}.pill{white-space:nowrap;background:#f1efff;color:#5e50c6;padding:9px 13px;border-radius:999px;font-size:.8rem;font-weight:800}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:38px 0 16px}.section-head h2{font-size:1.65rem;margin:0}.section-head p{margin:5px 0 0;color:var(--muted)}
-.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stage{background:white;border:2px solid transparent;border-radius:22px;padding:20px;text-align:left;box-shadow:0 8px 25px #25204b0b;transition:.18s;min-height:218px;color:var(--ink)}.stage:hover,.stage.active{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 14px 30px #5547a51c}.stage-top{display:flex;justify-content:space-between;align-items:center}.emoji{font-size:2.3rem}.age{font-size:.75rem;font-weight:900;color:#6b5ddd;background:#f1efff;padding:7px 10px;border-radius:999px}.stage h3{margin:14px 0 6px;font-size:1.13rem}.stage p{margin:0;color:var(--muted);font-size:.91rem;line-height:1.5}.stage small{display:block;margin-top:14px;color:#6d62c9;font-weight:800}
-.workspace{margin-top:22px;background:white;border-radius:24px;padding:24px;box-shadow:0 10px 30px #25204b0c;display:grid;grid-template-columns:1fr 1fr;gap:24px}.workspace h2{margin:0 0 8px}.workspace p{color:var(--muted);line-height:1.55}.avatar-scene{min-height:280px;border-radius:20px;background:linear-gradient(145deg,#e9f8f1,#e8e9ff);display:grid;place-items:center;position:relative;overflow:hidden}.avatar{font-size:5.5rem;filter:drop-shadow(0 12px 10px #3a365522)}.scene-caption{position:absolute;bottom:14px;left:14px;right:14px;text-align:center;background:#ffffffd9;border-radius:14px;padding:10px;font-weight:800}.customize{display:grid;gap:13px;align-content:start}.field label{display:block;font-size:.8rem;color:var(--muted);font-weight:800;margin-bottom:6px}.field select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}.pet-row{display:flex;gap:9px;flex-wrap:wrap}.pet{background:#f6f4ff;border:2px solid transparent;border-radius:13px;padding:9px 12px;font-size:1.5rem}.pet.active{border-color:var(--violet);background:#efedff}.primary{background:var(--violet);color:white;border:0;border-radius:13px;padding:13px 18px;font-weight:850}.secondary{background:#f0eff8;color:#514b80;border:0;border-radius:13px;padding:12px 16px;font-weight:800}.notice{font-size:.82rem;color:#888aa0;margin-top:4px}
-footer{text-align:center;color:#898ba3;padding:24px;font-size:.85rem}
-@media(max-width:760px){.hero-inner{grid-template-columns:1fr;margin-top:42px}.hero-visual{min-height:210px}.orb{width:145px;height:145px;font-size:5rem}.stages{grid-template-columns:1fr 1fr}.workspace{grid-template-columns:1fr}.intro{align-items:flex-start;flex-direction:column}}
-@media(max-width:480px){.stages{grid-template-columns:1fr}.hero{padding-bottom:46px}.hero h1{font-size:2.7rem}.section-head{display:block}}
+:root{--ink:#24304a;--muted:#65718a;--purple:#6956d9;--pink:#ff8eae;--cream:#fffaf2;--card:#fff;--line:#eee9fb;--mint:#dff7ee}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#f5f1ff 0%,#fff9f0 55%,#eefbf6 100%);color:var(--ink)}
+header{max-width:1120px;margin:auto;padding:24px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.35rem;font-weight:900;letter-spacing:-.5px}.logo span{color:var(--purple)}
+.tag{font-size:.85rem;color:var(--muted);font-weight:700}
+main{max-width:1120px;margin:12px auto 60px;padding:0 22px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:42px;border-radius:30px;background:rgba(255,255,255,.83);box-shadow:0 18px 55px #5140a012;border:1px solid #fff}
+.eyebrow{display:inline-block;background:#eeeaff;color:#5845c6;border-radius:30px;padding:8px 13px;font-size:.78rem;font-weight:800;letter-spacing:.5px}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.02;letter-spacing:-2.5px;margin:18px 0 14px}
+h1 span{color:var(--purple)}.intro{font-size:1.1rem;line-height:1.65;color:var(--muted);max-width:540px}
+.hero-art{min-height:250px;border-radius:26px;background:linear-gradient(145deg,#eeeaff,#e3f8ef);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-art .sun{position:absolute;width:150px;height:150px;border-radius:50%;background:#ffe7a8;right:13%;top:12%}
+.mascots{position:relative;z-index:1;font-size:clamp(5rem,12vw,8rem);filter:drop-shadow(0 12px 7px #4b3a301c)}
+.section-title{margin:42px 0 18px;display:flex;align-items:end;justify-content:space-between;gap:15px}
+h2{font-size:1.65rem;margin:0;letter-spacing:-.7px}.section-title p{margin:6px 0 0;color:var(--muted)}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 8px 24px #5140a00a}
+.stage .emoji{font-size:2rem}.stage h3{margin:12px 0 6px}.stage p{margin:0;color:var(--muted);line-height:1.5;font-size:.94rem}.age{display:inline-block;margin-top:13px;background:#f3f0ff;color:#6252c4;border-radius:20px;padding:6px 10px;font-size:.78rem;font-weight:800}
+.pet-panel{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 8px 24px #5140a00a}
+.pet-panel p{color:var(--muted);margin:8px 0 20px;line-height:1.5}
+.pet-options{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pet{border:2px solid #eeeafa;border-radius:17px;background:#fff;padding:14px 8px;cursor:pointer;color:var(--ink);font-size:1rem;font-weight:800;transition:.18s}
+.pet .animal{display:block;font-size:2.5rem;margin-bottom:8px}
+.pet:hover{transform:translateY(-2px);border-color:#bcb1f5}
+.pet.selected{border-color:var(--purple);background:#f5f2ff;box-shadow:0 0 0 3px #6956d91a}
+.selection{margin-top:18px;padding:14px 16px;background:#f2fbf7;border-radius:14px;color:#315d4d;font-weight:700}
+footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.stages{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){header{padding:18px}.tag{display:none}main{padding:0 15px}.hero{padding:24px}.stages{grid-template-columns:1fr}.pet-options{grid-template-columns:repeat(2,1fr)}.pet:last-child{grid-column:span 2}}
 </style>
 </head>
 <body>
-<header class="hero">
-<nav><div class="brand">✦ Math<span>Quest</span></div><div class="navtag">PLAY · LEARN · LEVEL UP</div></nav>
-<div class="hero-inner">
-<div><div class="eyebrow">Your learning adventure starts here</div><h1>One journey.<br><em>Every age.</em></h1><p>Grow your confidence in maths, make memories with your companion, and unlock the next chapter as your knowledge grows.</p></div>
-<div class="hero-visual"><div class="float f1">⭐ Learn at your pace</div><div class="orb">🐶</div><div class="float f2">🍪 Little wins matter</div></div>
-</div>
-</header>
+<header><div class="logo">🌟 Math<span>Quest</span></div><div class="tag">PLAY · LEARN · LEVEL UP</div></header>
 <main>
-<section class="intro"><div><h2>Welcome to your MathQuest</h2><p>Choose the chapter that matches your learning journey. You can explore the concept before we build each world in more detail.</p></div><div class="pill">A journey from early years to university</div></section>
-<div class="section-head"><div><h2>Choose your chapter</h2><p>Six stages. One continuous adventure.</p></div></div>
-<section class="stages" id="stages">
-<button class="stage active" data-stage="Little Stars"><div class="stage-top"><span class="emoji">🧸</span><span class="age">0–4</span></div><h3>Little Stars</h3><p>First numbers, shapes and playful discovery with a little animal friend.</p><small>PLAY & DISCOVER →</small></button>
-<button class="stage" data-stage="Junior"><div class="stage-top"><span class="emoji">🐾</span><span class="age">4–11</span></div><h3>Junior</h3><p>Grow together, solve maths missions and care for your companion.</p><small>GROW & EXPLORE →</small></button>
-<button class="stage" data-stage="Explorer"><div class="stage-top"><span class="emoji">🏡</span><span class="age">11–14</span></div><h3>Explorer</h3><p>Learn at home with a supportive family and a pet close by.</p><small>LEARN TOGETHER →</small></button>
-<button class="stage" data-stage="GCSE Quest"><div class="stage-top"><span class="emoji">📚</span><span class="age">14–16</span></div><h3>GCSE Quest</h3><p>Build skills, practise exam questions and climb the steps of progress.</p><small>PREPARE & PROGRESS →</small></button>
-<button class="stage" data-stage="Pro"><div class="stage-top"><span class="emoji">🪜</span><span class="age">16–18</span></div><h3>Pro</h3><p>Take on A-level challenges and climb towards your next goal.</p><small>CHALLENGE YOURSELF →</small></button>
-<button class="stage" data-stage="University"><div class="stage-top"><span class="emoji">🎓</span><span class="age">18+</span></div><h3>University</h3><p>Collect knowledge points, deepen your expertise and master new ideas.</p><small>MASTER & ADVANCE →</small></button>
+<section class="hero">
+  <div>
+    <span class="eyebrow">ONE JOURNEY. EVERY AGE.</span>
+    <h1>Make maths an <span>adventure.</span></h1>
+    <p class="intro">A friendly learning journey that grows with every learner — from first numbers to university-level challenges. Practise, make progress and explore new worlds along the way.</p>
+  </div>
+  <div class="hero-art" aria-label="MathQuest mascot illustration"><div class="sun"></div><div class="mascots">🧒 🐶</div></div>
 </section>
-<section class="workspace">
-<div class="avatar-scene"><div class="avatar" id="avatar">🧒🏻 🐶</div><div class="scene-caption" id="sceneCaption">A little learner and their new animal friend</div></div>
-<div class="customize">
-<div><div class="eyebrow" style="color:#7567d8">MAKE IT YOURS</div><h2 id="stageTitle">Meet your companion</h2><p id="stageDescription">Choose a character style and a pet. Your companion will be part of your MathQuest journey.</p></div>
-<div class="field"><label for="character">Your character</label><select id="character"><option value="🧒🏻">Child · light skin</option><option value="🧒🏼">Child · medium-light skin</option><option value="🧒🏽">Child · medium skin</option><option value="🧒🏾">Child · medium-dark skin</option><option value="🧒🏿">Child · dark skin</option></select></div>
-<div class="field"><label for="outfit">Outfit</label><select id="outfit"><option>Cosy pyjamas</option><option>T-shirt and trousers</option><option>Comfy jumper</option><option>Cap and casual clothes</option></select></div>
-<div class="field"><label>Choose your animal friend</label><div class="pet-row" id="pets"><button class="pet active" data-pet="🐶" aria-label="Dog">🐶</button><button class="pet" data-pet="🐱" aria-label="Cat">🐱</button><button class="pet" data-pet="🐰" aria-label="Rabbit">🐰</button><button class="pet" data-pet="🐢" aria-label="Turtle">🐢</button><button class="pet" data-pet="🐠" aria-label="Fish">🐠</button></div></div>
-<button class="primary" id="preview">Preview my journey ✨</button>
-<div class="notice">This is the first visual prototype. Your choices are saved in this browser only.</div>
-</div>
+
+<section>
+  <div class="section-title"><div><h2>Your learning journey</h2><p>Choose a stage to explore what comes next.</p></div></div>
+  <div class="stages">
+    <article class="stage"><div class="emoji">✨</div><h3>Little Stars</h3><p>Discover numbers, shapes and patterns through playful first steps.</p><span class="age">Ages 0–4</span></article>
+    <article class="stage"><div class="emoji">🎒</div><h3>Junior</h3><p>Build confidence with counting, addition, subtraction and more.</p><span class="age">Ages 4–11</span></article>
+    <article class="stage"><div class="emoji">🧭</div><h3>Explorer</h3><p>Take on new maths ideas, puzzles and bigger challenges.</p><span class="age">Ages 11–14</span></article>
+    <article class="stage"><div class="emoji">🏆</div><h3>GCSE Quest</h3><p>Practise key topics and prepare for GCSE maths exams.</p><span class="age">Ages 14–16</span></article>
+    <article class="stage"><div class="emoji">🚀</div><h3>Pro</h3><p>Strengthen your skills and prepare for the next step after school.</p><span class="age">Ages 16–18</span></article>
+    <article class="stage"><div class="emoji">🎓</div><h3>University</h3><p>Keep learning with more advanced mathematical challenges.</p><span class="age">Ages 18+</span></article>
+  </div>
+</section>
+
+<section class="pet-panel">
+  <h2>Choose your animal companion</h2>
+  <p>Your companion will be part of your MathQuest journey. Pick the friend you would like by your side.</p>
+  <div class="pet-options" role="group" aria-label="Choose an animal companion">
+    <button class="pet selected" data-pet="🐶" data-name="Dog"><span class="animal">🐶</span>Dog</button>
+    <button class="pet" data-pet="🐱" data-name="Cat"><span class="animal">🐱</span>Cat</button>
+    <button class="pet" data-pet="🐰" data-name="Rabbit"><span class="animal">🐰</span>Rabbit</button>
+    <button class="pet" data-pet="🐢" data-name="Turtle"><span class="animal">🐢</span>Turtle</button>
+    <button class="pet" data-pet="🐠" data-name="Fish"><span class="animal">🐠</span>Fish</button>
+  </div>
+  <div class="selection" id="selection" aria-live="polite">Your companion is a Dog 🐶</div>
 </section>
 </main>
 <footer>MathQuest · Play. Learn. Level Up. · Early prototype</footer>
 <script>
-const stageInfo={
-"Little Stars":["Meet your companion","Choose a friendly character and a little pet. Early activities will focus on counting, colours, shapes and sounds.","A little learner and their new animal friend"],
-"Junior":["Growing side by side","Your character and pet grow through the primary years. Maths missions unlock treats, toys and new places.","A growing learner and a growing companion"],
-"Explorer":["Learning together at home","A cosy study space, a supportive parent or carer, and your pet relaxing nearby. Mistakes are part of learning.","A family learning moment with a pet nearby"],
-"GCSE Quest":["Climb towards your GCSE goals","Build confidence with focused practice, topic milestones and a staircase that celebrates progress.","Every topic takes you one step higher"],
-"Pro":["Your next big challenge","Prepare for A-level maths with deeper topics, exam practice and goals that lead towards your future.","Climbing towards the next achievement"],
-"University":["Knowledge becomes your superpower","Earn knowledge points, explore advanced mathematics and build your own areas of expertise.","A new chapter of independent learning"]
-};
-let selectedPet=localStorage.getItem('mq-pet')||'🐶';
-let selectedStage='Little Stars';
-function updateAvatar(){document.getElementById('avatar').textContent=document.getElementById('character').value+' '+selectedPet}
-function chooseStage(name){selectedStage=name;document.querySelectorAll('.stage').forEach(b=>b.classList.toggle('active',b.dataset.stage===name));let info=stageInfo[name];document.getElementById('stageTitle').textContent=info[0];document.getElementById('stageDescription').textContent=info[1];document.getElementById('sceneCaption').textContent=info[2];updateAvatar()}
-document.querySelectorAll('.stage').forEach(b=>b.addEventListener('click',()=>chooseStage(b.dataset.stage)));
-document.querySelectorAll('.pet').forEach(b=>b.addEventListener('click',()=>{selectedPet=b.dataset.pet;localStorage.setItem('mq-pet',selectedPet);document.querySelectorAll('.pet').forEach(p=>p.classList.toggle('active',p===b));updateAvatar()}));
-document.getElementById('character').addEventListener('change',updateAvatar);
-document.getElementById('preview').addEventListener('click',()=>{document.getElementById('sceneCaption').textContent='Your '+selectedStage+' adventure is taking shape!';document.getElementById('preview').textContent='Looking good! ✨'});
-updateAvatar();
+const buttons=[...document.querySelectorAll('.pet')];
+const selection=document.getElementById('selection');
+function choosePet(button){
+  buttons.forEach(item=>item.classList.toggle('selected',item===button));
+  const pet=button.dataset.pet, name=button.dataset.name;
+  selection.textContent=`Your companion is a ${name} ${pet}`;
+  try{localStorage.setItem('mathquest-pet',JSON.stringify({name,pet}));}catch(e){}
+}
+buttons.forEach(button=>button.addEventListener('click',()=>choosePet(button)));
+try{
+ const saved=JSON.parse(localStorage.getItem('mathquest-pet')||'null');
+ if(saved){const match=buttons.find(b=>b.dataset.name===saved.name);if(match)choosePet(match);}
+}catch(e){}
 </script>
 </body>
 </html>
