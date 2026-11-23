@@ -36,6 +36,51 @@ h2{font-size:1.65rem;margin:0;letter-spacing:-.7px}.section-title p{margin:6px 0
 footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
 @media(max-width:760px){.hero{grid-template-columns:1fr;padding:28px}.hero-art{min-height:190px}.stages{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){header{padding:18px}.tag{display:none}main{padding:0 15px}.hero{padding:24px}.stages{grid-template-columns:1fr}.pet-options{grid-template-columns:repeat(2,1fr)}.pet:last-child{grid-column:span 2}}
+
+.game-panel{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 8px 24px #5140a00a}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.game-stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#f4f1ff;color:#5845c6;border-radius:14px;padding:9px 13px;font-weight:800;font-size:.9rem}
+.game-card{margin-top:18px;padding:24px;border-radius:20px;background:linear-gradient(135deg,#f2efff,#effbf6);text-align:center}
+.game-card h3{font-size:1.2rem;margin:0 0 10px}
+.question{font-size:clamp(2.4rem,7vw,3.8rem);font-weight:900;letter-spacing:-1px;margin:14px 0 20px;color:#302b55}
+.answer-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.answer-btn,.start-btn{border:0;border-radius:14px;padding:13px 22px;font-size:1.1rem;font-weight:900;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 4px 12px #302b5510;min-width:82px}
+.answer-btn:hover{outline:2px solid #bcb1f5}
+.start-btn{background:var(--purple);color:#fff;margin-top:15px;padding:13px 24px}
+.start-btn:hover{filter:brightness(1.06)}
+.feedback{min-height:30px;margin:17px 0 0;font-weight:800;color:#315d4d}
+.game-help{color:var(--muted);font-size:.92rem;line-height:1.5;margin:8px 0 0}
+@media(max-width:480px){.game-panel{padding:18px}.game-card{padding:18px}.answer-btn{min-width:65px;padding:12px 15px}}
+
+
+.math-path{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 8px 24px #5140a00a}
+.path-intro{color:var(--muted);line-height:1.55;margin:8px 0 18px}
+.operation-tabs{display:flex;gap:10px;flex-wrap:wrap}
+.operation-tab{border:2px solid #eeeafa;border-radius:14px;background:#fff;color:var(--ink);font-weight:800;padding:11px 18px;cursor:pointer}
+.operation-tab.active{border-color:var(--purple);background:#f5f2ff;color:#5845c6}
+.level-track{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:18px 0}
+.level-step{border:1px solid var(--line);border-radius:13px;padding:11px 7px;text-align:center;background:#faf9ff;color:var(--muted);font-size:.84rem;font-weight:800}
+.level-step.current{border:2px solid var(--purple);background:#f2efff;color:#5845c6}
+.level-step.done{background:#effbf6;border-color:#bcebd7;color:#28634d}
+.level-step.locked{opacity:.55}
+.path-status{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.path-stat{background:#f4f1ff;color:#5845c6;border-radius:12px;padding:9px 12px;font-weight:800;font-size:.88rem}
+.lesson-card{margin-top:16px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#f2efff,#effbf6);text-align:center}
+.lesson-card h3{margin:0 0 8px}
+.lesson-question{font-size:clamp(2.5rem,7vw,4rem);font-weight:900;letter-spacing:-1px;margin:15px 0;color:#302b55}
+.lesson-answers{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.lesson-answer,.lesson-main-btn{border:0;border-radius:14px;padding:13px 22px;font-size:1.12rem;font-weight:900;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 4px 12px #302b5510;min-width:82px}
+.lesson-answer:hover{outline:2px solid #bcb1f5}
+.lesson-answer:disabled{opacity:.6;cursor:default}
+.lesson-main-btn{background:var(--purple);color:#fff;margin-top:15px;padding:13px 24px}
+.lesson-feedback{min-height:28px;margin:16px 0 0;font-weight:800;color:#315d4d}
+.lesson-note{color:var(--muted);font-size:.9rem;line-height:1.5;margin:7px 0 0}
+.reward-shelf{margin-top:17px;padding:15px;background:#fffaf2;border:1px solid #f5e7ce;border-radius:15px}
+.reward-shelf strong{display:block;margin-bottom:8px}
+.reward-icons{font-size:1.5rem;letter-spacing:4px;min-height:28px}
+@media(max-width:520px){.math-path{padding:18px}.level-track{gap:5px}.level-step{font-size:.72rem;padding:9px 3px}.lesson-card{padding:17px}.lesson-answer{min-width:65px;padding:12px 15px}}
+
 </style>
 </head>
 <body>
@@ -92,6 +137,37 @@ footer{text-align:center;padding:26px;color:var(--muted);font-size:.85rem}
   <div class="selection" id="selection" aria-live="polite">Your companion is a Dog 🐶</div>
 </section>
 </main>
+
+
+<section class="math-path" id="math-path">
+  <h2>Your Maths Learning Path</h2>
+  <p class="path-intro">Learn step by step. Addition and subtraction have their own paths. Each level has 20 questions. Get at least 16 right to master the level and unlock the next one. You can practise again whenever you need.</p>
+  <div class="operation-tabs" role="group" aria-label="Choose maths operation">
+    <button class="operation-tab active" id="addition-tab" type="button">➕ Addition</button>
+    <button class="operation-tab" id="subtraction-tab" type="button">➖ Subtraction</button>
+  </div>
+  <div class="level-track" id="level-track" aria-label="Learning levels"></div>
+  <div class="path-status">
+    <div class="path-stat" id="question-progress">📝 Question: 0 / 20</div>
+    <div class="path-stat" id="correct-progress">⭐ Correct: 0</div>
+    <div class="path-stat" id="cookie-count">🍪 Cookies: 0</div>
+  </div>
+  <div class="lesson-card">
+    <h3 id="lesson-heading">Ready to start?</h3>
+    <div class="lesson-question" id="lesson-question">➕ 🐾</div>
+    <div class="lesson-answers" id="lesson-answers">
+      <button class="lesson-main-btn" id="begin-level" type="button">Start level 1</button>
+    </div>
+    <p class="lesson-feedback" id="lesson-feedback" aria-live="polite">Every question is a chance to learn. You can do it!</p>
+    <p class="lesson-note" id="lesson-note">Level 1: answers up to 10 · 20 questions</p>
+  </div>
+  <div class="reward-shelf">
+    <strong>🐾 Your companion's collection</strong>
+    <div class="reward-icons" id="reward-icons">No level rewards yet — your first surprise is waiting!</div>
+    <p class="lesson-note">Master a level to earn a special pet tag or toy. Cookies are collected for correct answers.</p>
+  </div>
+</section>
+
 <footer>MathQuest · Play. Learn. Level Up. · Early prototype</footer>
 <script>
 const buttons=[...document.querySelectorAll('.pet')];
@@ -107,6 +183,168 @@ try{
  const saved=JSON.parse(localStorage.getItem('mathquest-pet')||'null');
  if(saved){const match=buttons.find(b=>b.dataset.name===saved.name);if(match)choosePet(match);}
 }catch(e){}
+
+
+// MathQuest: separate addition and subtraction paths, with 20 questions per level.
+(() => {
+  const limits = [10,  30, 50, 100, 1000];
+  const cookies = ['🍪','⭐🍪','💗🍪','🐾🍪','🦴🍪'];
+  const prizes = ['🎀 pet tag','🧸 little toy','🏅 shiny badge','🪀 fun toy','👑 special crown'];
+  const storageKey = 'mathquest-learning-path-v1';
+  const freshState = () => ({
+    addition: { level: 0, completed: [], cookies: 0, prizes: [] },
+    subtraction: { level: 0, completed: [], cookies: 0, prizes: [] }
+  });
+  let savedState = freshState();
+  try {
+    const stored = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (stored && stored.addition && stored.subtraction) savedState = stored;
+  } catch (e) {}
+
+  let operation = 'addition';
+  let questionNo = 0, correct = 0, answer = 0, locked = false, active = false;
+  let sessionCookies = [];
+
+  const $ = id => document.getElementById(id);
+  const addTab = $('addition-tab'), subTab = $('subtraction-tab');
+  const track = $('level-track'), heading = $('lesson-heading');
+  const question = $('lesson-question'), answers = $('lesson-answers');
+  const feedback = $('lesson-feedback'), note = $('lesson-note');
+  const qProgress = $('question-progress'), cProgress = $('correct-progress');
+  const cookieCount = $('cookie-count'), rewardIcons = $('reward-icons');
+
+  function current() { return savedState[operation]; }
+  function save() {
+    try { localStorage.setItem(storageKey, JSON.stringify(savedState)); } catch (e) {}
+  }
+  function render() {
+    const data = current();
+    addTab.classList.toggle('active', operation === 'addition');
+    subTab.classList.toggle('active', operation === 'subtraction');
+    track.innerHTML = '';
+    limits.forEach((limit, index) => {
+      const item = document.createElement('div');
+      const done = data.completed.includes(index);
+      item.className = 'level-step ' + (done ? 'done' : index === data.level ? 'current' : 'locked');
+      item.textContent = `${done ? '✓ ' : ''}Level ${index + 1}\n≤ ${limit}`;
+      track.appendChild(item);
+    });
+    qProgress.textContent = `📝 Question: ${questionNo} / 20`;
+    cProgress.textContent = `⭐ Correct: ${correct}`;
+    cookieCount.textContent = `🍪 Cookies: ${data.cookies}`;
+    rewardIcons.textContent = data.prizes.length
+      ? data.prizes.map((p, i) => `${p}`).join('  ·  ')
+      : 'No level rewards yet — your first surprise is waiting!';
+    note.textContent = `Level ${data.level + 1}: ${operation === 'addition' ? 'addition' : 'subtraction'} answers up to ${limits[data.level]} · 20 questions`;
+  }
+  function randomInt(max) { return Math.floor(Math.random() * (max + 1)); }
+  function makeProblem() {
+    const max = limits[current().level];
+    let a, b;
+    if (operation === 'addition') {
+      a = randomInt(max);
+      b = randomInt(max - a);
+      answer = a + b;
+      question.textContent = `${a} + ${b} = ?`;
+    } else {
+      a = randomInt(max);
+      b = randomInt(a);
+      answer = a - b;
+      question.textContent = `${a} − ${b} = ?`;
+    }
+  }
+  function startLevel() {
+    questionNo = 0; correct = 0; sessionCookies = []; active = true; locked = false;
+    heading.textContent = `${operation === 'addition' ? 'Addition' : 'Subtraction'} · Level ${current().level + 1}`;
+    feedback.textContent = 'You have 20 questions. Take your time!';
+    nextQuestion();
+  }
+  function nextQuestion() {
+    if (questionNo >= 20) { finishLevel(); return; }
+    locked = false;
+    questionNo += 1;
+    makeProblem();
+    render();
+    answers.innerHTML = '';
+    const options = new Set([answer]);
+    while (options.size < 3) {
+      let candidate = answer + (randomInt(9) - 4);
+      if (candidate >= 0 && candidate <= limits[current().level]) options.add(candidate);
+    }
+    [...options].sort(() => Math.random() - .5).forEach(value => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'lesson-answer'; button.textContent = value;
+      button.addEventListener('click', () => checkAnswer(value));
+      answers.appendChild(button);
+    });
+  }
+  function checkAnswer(value) {
+    if (locked) return;
+    locked = true;
+    [...answers.querySelectorAll('button')].forEach(button => button.disabled = true);
+    if (value === answer) {
+      correct += 1;
+      current().cookies += 1;
+      const cookie = cookies[randomInt(cookies.length - 1)];
+      sessionCookies.push(cookie);
+      feedback.textContent = `Correct! ${cookie} Your companion gets a cookie.`;
+    } else {
+      feedback.textContent = `Good try! The answer is ${answer}. Mistakes help us learn — keep going! 💛`;
+    }
+    save(); render();
+    const next = document.createElement('button');
+    next.type = 'button'; next.className = 'lesson-main-btn';
+    next.textContent = questionNo === 20 ? 'See level result' : 'Next question';
+    next.addEventListener('click', nextQuestion);
+    answers.appendChild(next);
+  }
+  function finishLevel() {
+    active = false;
+    const data = current();
+    const passed = correct >= 16;
+    heading.textContent = passed ? 'Level mastered! 🎉' : 'Good effort — let’s practise again!';
+    question.textContent = `${correct} / 20`;
+    answers.innerHTML = '';
+    if (passed) {
+      if (!data.completed.includes(data.level)) {
+        data.completed.push(data.level);
+        data.prizes.push(prizes[data.level]);
+      }
+      feedback.textContent = `Amazing work! Your companion earned a ${prizes[data.level]}.`;
+      if (data.level < limits.length - 1) data.level += 1;
+      else feedback.textContent = `You mastered every ${operation} level! Incredible work! 🏆`;
+      const button = document.createElement('button');
+      button.className = 'lesson-main-btn'; button.type = 'button';
+      button.textContent = data.level === limits.length - 1 && data.completed.includes(4) ? 'Practise this level again' : 'Continue to next level';
+      button.addEventListener('click', startLevel);
+      answers.appendChild(button);
+    } else {
+      feedback.textContent = `You got ${correct} correct. You need 16 out of 20 to master this level. No worries — try again when you are ready!`;
+      const retry = document.createElement('button');
+      retry.className = 'lesson-main-btn'; retry.type = 'button'; retry.textContent = 'Try this level again';
+      retry.addEventListener('click', startLevel); answers.appendChild(retry);
+    }
+    save(); render();
+  }
+  function switchOperation(next) {
+    operation = next; questionNo = 0; correct = 0; active = false;
+    heading.textContent = 'Ready to start?';
+    question.textContent = next === 'addition' ? '➕ 🐾' : '➖ 🐾';
+    feedback.textContent = 'Every question is a chance to learn. You can do it!';
+    answers.innerHTML = '';
+    const button = document.createElement('button');
+    button.className = 'lesson-main-btn'; button.type = 'button';
+    button.textContent = `Start level ${current().level + 1}`;
+    button.addEventListener('click', startLevel);
+    answers.appendChild(button);
+    render();
+  }
+  addTab.addEventListener('click', () => switchOperation('addition'));
+  subTab.addEventListener('click', () => switchOperation('subtraction'));
+  $('begin-level').addEventListener('click', startLevel);
+  render();
+})();
+
 </script>
 </body>
 </html>
