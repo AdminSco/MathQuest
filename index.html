@@ -1,138 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MathQuest — Play. Learn. Level Up.</title>
 <style>
-:root{--navy:#101a36;--navy2:#18264b;--blue:#4f8cff;--teal:#42d6c5;--gold:#ffd166;--ink:#f5f7ff;--muted:#b9c5e5;--panel:#1c2b52;--panel2:#24365f}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#293e73 0%,#111c3b 45%,#0b142c 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
-button,input,select{font:inherit}button{cursor:pointer;border:0}
-.wrap{max-width:1180px;margin:auto;padding:20px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:clamp(20px,3vw,28px);letter-spacing:-.8px}.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#5b9cff,#7b61ff);display:grid;place-items:center;box-shadow:0 8px 24px #0005;font-size:22px}
-.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.lang{background:#1c2b52;color:white;border:1px solid #52658f;border-radius:12px;padding:10px 12px;max-width:190px}
-.pill{background:#20345e;border:1px solid #405786;border-radius:999px;padding:9px 13px;color:#e9efff;font-size:13px}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
-.panel{background:linear-gradient(145deg,rgba(35,53,94,.96),rgba(22,35,69,.96));border:1px solid #405681;border-radius:24px;box-shadow:0 18px 45px #050b1c55}
-.welcome{padding:clamp(22px,4vw,38px);position:relative;overflow:hidden}.eyebrow{color:var(--teal);font-size:12px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
-h1{font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-2px;margin:12px 0}.gradient{background:linear-gradient(90deg,#fff,#8ce7e0 65%,#ffd166);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:var(--muted);font-size:16px;line-height:1.6;max-width:520px}
-.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px}.primary{background:linear-gradient(135deg,#5b9cff,#725cff);color:white;padding:14px 20px;border-radius:14px;font-weight:850;box-shadow:0 8px 20px #426ee855}.secondary{background:#263a67;color:white;border:1px solid #58709f;padding:13px 18px;border-radius:14px;font-weight:750}
-.small{font-size:12px;color:#aebce0;margin-top:14px}
-.avatar-stage{min-height:300px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 45%,#456db5 0,#273e70 36%,#1b2b51 70%)}.orb{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a7e9ff,#598cff 42%,#725cff 72%);filter:drop-shadow(0 20px 35px #0006);opacity:.88}.castle{position:relative;font-size:clamp(100px,17vw,170px);filter:drop-shadow(0 14px 15px #101a36);z-index:1}.float{position:absolute;z-index:2;background:#17294d;border:1px solid #6b86bb;border-radius:14px;padding:10px 13px;font-weight:800;box-shadow:0 10px 25px #0004}.f1{top:18%;left:8%}.f2{right:7%;top:30%}.f3{bottom:13%;left:20%}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:28px 2px 14px}.section-head h2{margin:0;font-size:22px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.world{padding:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.location{background:linear-gradient(160deg,#2a4273,#1b2b51);border:1px solid #4b6597;border-radius:17px;padding:15px 12px;min-height:142px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;transition:.18s}
-.location:hover{transform:translateY(-3px);border-color:var(--gold)}.loc-icon{font-size:31px}.location strong{font-size:13px}.location span{font-size:11px;color:#bac8e9}.locked{opacity:.55}
-.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.info{padding:20px}.info h3{margin:0 0 8px}.info p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}
-.modal-back{position:fixed;inset:0;background:#050a18c9;display:none;place-items:center;padding:18px;z-index:10}.modal-back.show{display:grid}.modal{width:min(100%,480px);padding:24px}.modal h2{margin:0 0 8px}.modal p{color:var(--muted);line-height:1.5}.field{display:block;width:100%;margin:12px 0;padding:13px 14px;background:#111e3d;border:1px solid #506794;border-radius:12px;color:white}.close{float:right;background:#30466f;color:white;border-radius:10px;padding:7px 11px}
-.game{display:none;margin-top:18px;padding:22px}.game.show{display:block}.game-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.progress{height:9px;background:#101b37;border-radius:20px;overflow:hidden;margin:14px 0 22px}.progress span{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:20px}.question{font-size:clamp(23px,4vw,34px);font-weight:850;margin:16px 0}.answers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.answer{padding:15px;background:#263b68;border:1px solid #526d9e;color:white;border-radius:13px;font-weight:800}.answer:hover{border-color:var(--gold)}.feedback{min-height:26px;color:var(--teal);font-weight:800;margin:14px 0}
-footer{text-align:center;color:#8294bd;font-size:11px;padding:25px 0 10px}
-@media(max-width:760px){.hero{grid-template-columns:1fr}.avatar-stage{min-height:230px}.world{grid-template-columns:repeat(2,1fr)}.bottom-grid{grid-template-columns:1fr}.top{align-items:flex-start}.top-right{justify-content:flex-end}.answers{grid-template-columns:1fr 1fr}}
-@media(max-width:390px){.world{grid-template-columns:1fr 1fr}.pill{display:none}.wrap{padding:13px}}
+:root{--ink:#20254a;--purple:#6556d9;--pink:#ffcfdf;--cream:#fffaf0;--green:#d9f4df;--blue:#dcecff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#f2edff,#eaf8ff);color:var(--ink)}
+header{padding:22px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{margin:0;font-size:clamp(1.7rem,4vw,2.5rem);color:var(--purple)}.tag{font-weight:700;color:#69658b}
+main{max-width:960px;margin:12px auto;padding:16px}.panel{background:white;border-radius:24px;padding:22px;margin:14px 0;box-shadow:0 8px 28px #3e34751a}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.pet{font-size:3rem;border:3px solid transparent;border-radius:18px;padding:12px;background:#f7f4ff;cursor:pointer}.pet.selected{border-color:var(--purple);background:#eeeaff}
+button,select{font:inherit;border:0;border-radius:12px;padding:12px 16px;cursor:pointer}button{background:var(--purple);color:white;font-weight:700}button.secondary{background:#eeeaff;color:var(--ink)}button:disabled{opacity:.45;cursor:not-allowed}
+input{font:inherit;padding:12px;border:2px solid #ddd8f4;border-radius:12px;width:100px}
+.stat{background:var(--cream);padding:12px 16px;border-radius:14px;font-weight:700}.question{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;margin:18px 0}
+#feedback{min-height:30px;font-weight:700}.small{color:#6e6b86;font-size:.92rem}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand"><div class="brand-mark">✦</div><span>MathQuest</span></div>
-    <div class="top-right">
-      <select class="lang" id="language" aria-label="Choose language">
-        <option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="pl">🇵🇱 Polski</option><option value="cy">🏴 Welsh / Cymraeg</option>
-        <option value="ur">اردو</option><option value="pa">ਪੰਜਾਬੀ</option><option value="bn">বাংলা</option>
-        <option value="ar">العربية</option><option value="gu">ગુજરાતી</option><option value="ro">Română</option><option value="pt">Português</option>
-      </select>
-      <span class="pill" id="profilePill">Guest mode</span>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="panel welcome">
-        <div class="eyebrow" data-i18n="eyebrow">YOUR MATHEMATICAL ADVENTURE STARTS HERE</div>
-        <h1><span data-i18n="headline1">Play.</span><br><span class="gradient" data-i18n="headline2">Learn. Level Up.</span></h1>
-        <p class="lead" data-i18n="intro">Explore magical worlds, solve clever challenges and grow your maths skills one quest at a time.</p>
-        <div class="actions">
-          <button class="primary" id="guestBtn" data-i18n="guest">⚔ Play as Guest</button>
-          <button class="secondary" id="accountBtn" data-i18n="account">Create Account / Log In</button>
-        </div>
-        <div class="small" data-i18n="note">No payment. No download. This is a free early prototype.</div>
-      </div>
-      <div class="panel avatar-stage">
-        <div class="orb"></div><div class="castle">🏰</div>
-        <div class="float f1">⭐ <span data-i18n="xp">XP</span> <b id="xp">0</b></div>
-        <div class="float f2">🪙 <span data-i18n="coins">Coins</span> <b id="coins">0</b></div>
-        <div class="float f3">🐉 <span data-i18n="boss">Boss ahead!</span></div>
-      </div>
-    </section>
-
-    <div class="section-head"><div><h2 data-i18n="worldTitle">🗺️ Number Kingdom</h2><p data-i18n="worldSub">Your first world • Build confidence, one mission at a time</p></div><span class="pill">WORLD 01</span></div>
-    <section class="panel world">
-      <button class="location" data-mission="count"><div class="loc-icon">🏡</div><strong data-i18n="counting">Counting Village</strong><span data-i18n="startHere">Start here</span></button>
-      <button class="location" data-mission="add"><div class="loc-icon">🌄</div><strong data-i18n="addition">Addition Valley</strong><span data-i18n="mission">Math mission</span></button>
-      <button class="location" data-mission="multi"><div class="loc-icon">⛰️</div><strong data-i18n="multiplication">Multiplication Mountains</strong><span data-i18n="mission">Math mission</span></button>
-      <button class="location locked" data-mission="division"><div class="loc-icon">🗝️</div><strong data-i18n="division">Division Dungeon</strong><span data-i18n="unlock">Unlock with progress</span></button>
-      <button class="location locked" data-mission="boss"><div class="loc-icon">🐉</div><strong data-i18n="castle">Number Castle</strong><span data-i18n="bossBattle">Boss battle</span></button>
-    </section>
-
-    <section class="panel game" id="gamePanel">
-      <div class="game-top"><strong id="missionName">Counting Village</strong><span class="pill" id="questionCount">Question 1 / 3</span></div>
-      <div class="progress"><span id="progressBar"></span></div>
-      <div class="eyebrow" data-i18n="challenge">QUEST CHALLENGE</div>
-      <div class="question" id="question">What is 6 + 7?</div>
-      <div class="answers" id="answers"></div>
-      <div class="feedback" id="feedback" aria-live="polite"></div>
-      <button class="secondary" id="nextBtn" style="display:none" data-i18n="next">Next question →</button>
-    </section>
-
-    <section class="bottom-grid">
-      <div class="panel info"><h3 data-i18n="guestTitle">🎮 Guest or account?</h3><p data-i18n="guestInfo">Try the game instantly as a guest. Create a demo profile to see how a named player experience could work. This prototype stores demo progress only in this browser.</p></div>
-      <div class="panel info"><h3 data-i18n="safeTitle">🛡️ Designed with families in mind</h3><p data-i18n="safeInfo">The full product will include parent-managed child accounts, privacy controls and no open chat. This demo does not collect or send personal information.</p></div>
-    </section>
-  </main>
-  <footer>MathQuest • Play. Learn. Level Up. • Free concept prototype</footer>
+<header><div><h1>🌟 MathQuest</h1><div class="tag">Play. Learn. Level Up.</div></div><div class="stat" id="levelLabel">MathQuest Junior</div></header>
+<main>
+<section class="panel">
+<h2>Welcome, young mathematician!</h2>
+<p>Choose your companion. In Junior, every correct answer earns a treat to feed your pet.</p>
+<div class="row" id="pets">
+<button class="pet selected" data-pet="🐶" aria-label="Dog">🐶<br><small>Dog</small></button>
+<button class="pet" data-pet="🐱" aria-label="Cat">🐱<br><small>Cat</small></button>
+<button class="pet" data-pet="🐠" aria-label="Fish">🐠<br><small>Fish</small></button>
+<button class="pet" data-pet="🐢" aria-label="Turtle">🐢<br><small>Turtle</small></button>
 </div>
-
-<div class="modal-back" id="modal">
-  <div class="panel modal">
-    <button class="close" id="closeModal">✕</button>
-    <h2 data-i18n="createTitle">Create your adventurer</h2>
-    <p data-i18n="createInfo">Demo only: enter a nickname to preview a registered-player profile. No account is created online.</p>
-    <input class="field" id="nickname" maxlength="18" placeholder="Adventurer nickname">
-    <button class="primary" id="saveProfile" data-i18n="save">Save demo profile</button>
-  </div>
+<div class="row" style="margin-top:16px">
+<div class="stat">Your pet: <span id="petFace">🐶</span></div>
+<div class="stat">🍪 Treats: <span id="treats">0</span></div>
+<div class="stat">⭐ XP: <span id="xp">0</span></div>
+<div class="stat">❤️ Fed: <span id="fed">0</span></div>
 </div>
-
+<div class="row" style="margin-top:14px"><button class="secondary" id="feedBtn">Feed my pet 🍪</button><button class="secondary" id="upgradeBtn">Move up to Explorer →</button></div>
+<p class="small" id="stageNote">Junior mode: earn one treat for every correct answer.</p>
+</section>
+<section class="panel">
+<h2>🧠 Your maths challenge</h2>
+<div class="small">Solve the question and press Check answer.</div>
+<div class="question" id="question">3 + 4 = ?</div>
+<div class="row"><input id="answer" type="number" inputmode="numeric" aria-label="Your answer"><button id="checkBtn">Check answer</button><button class="secondary" id="nextBtn">New question</button></div>
+<p id="feedback" aria-live="polite"></p>
+</section>
+<section class="panel">
+<h2>🗺️ Number Kingdom</h2>
+<p>Every question is a little step on your adventure. Keep practising to build your maths skills!</p>
+<p class="small">Demo version: progress is saved only in this browser on this device.</p>
+</section>
+</main>
 <script>
-const translations={
-es:{eyebrow:"TU AVENTURA MATEMÁTICA EMPIEZA AQUÍ",headline1:"Juega.",headline2:"Aprende. Sube de nivel.",intro:"Explora mundos mágicos, resuelve desafíos ingeniosos y mejora tus habilidades matemáticas misión a misión.",guest:"⚔ Jugar como invitado",account:"Crear cuenta / Iniciar sesión",note:"Sin pagos ni descargas. Este es un prototipo inicial gratuito.",xp:"XP",coins:"Monedas",boss:"¡Jefe por delante!",worldTitle:"🗺️ Reino de los Números",worldSub:"Tu primer mundo • Gana confianza, una misión cada vez",counting:"Aldea de los Números",addition:"Valle de la Suma",multiplication:"Montañas de la Multiplicación",division:"Mazmorra de la División",castle:"Castillo de los Números",startHere:"Empieza aquí",mission:"Misión matemática",unlock:"Desbloquea avanzando",bossBattle:"Batalla contra el jefe",challenge:"DESAFÍO DE LA MISIÓN",next:"Siguiente pregunta →",guestTitle:"🎮 ¿Invitado o cuenta?",guestInfo:"Prueba el juego al instante como invitado. Crea un perfil de demostración para ver cómo podría funcionar una experiencia con nombre de jugador. Este prototipo guarda el progreso solo en este navegador.",safeTitle:"🛡️ Diseñado pensando en las familias",safeInfo:"El producto completo incluirá cuentas infantiles gestionadas por padres, controles de privacidad y ningún chat abierto. Esta demo no recopila ni envía datos personales.",createTitle:"Crea tu aventurero",createInfo:"Solo demostración: escribe un apodo para previsualizar un perfil de jugador registrado. No se crea ninguna cuenta en línea.",save:"Guardar perfil de demostración"},
-en:{eyebrow:"YOUR MATHEMATICAL ADVENTURE STARTS HERE",headline1:"Play.",headline2:"Learn. Level Up.",intro:"Explore magical worlds, solve clever challenges and grow your maths skills one quest at a time.",guest:"⚔ Play as Guest",account:"Create Account / Log In",note:"No payment. No download. This is a free early prototype.",xp:"XP",coins:"Coins",boss:"Boss ahead!",worldTitle:"🗺️ Number Kingdom",worldSub:"Your first world • Build confidence, one mission at a time",counting:"Counting Village",addition:"Addition Valley",multiplication:"Multiplication Mountains",division:"Division Dungeon",castle:"Number Castle",startHere:"Start here",mission:"Math mission",unlock:"Unlock with progress",bossBattle:"Boss battle",challenge:"QUEST CHALLENGE",next:"Next question →",guestTitle:"🎮 Guest or account?",guestInfo:"Try the game instantly as a guest. Create a demo profile to see how a named player experience could work. This prototype stores demo progress only in this browser.",safeTitle:"🛡️ Designed with families in mind",safeInfo:"The full product will include parent-managed child accounts, privacy controls and no open chat. This demo does not collect or send personal information.",createTitle:"Create your adventurer",createInfo:"Demo only: enter a nickname to preview a registered-player profile. No account is created online.",save:"Save demo profile"},
-pl:{eyebrow:"TWOJA MATEMATYCZNA PRZYGODA ZACZYNA SIĘ TUTAJ",headline1:"Graj.",headline2:"Ucz się. Zdobywaj poziomy.",intro:"Odkrywaj magiczne światy, rozwiązuj sprytne wyzwania i rozwijaj umiejętności matematyczne podczas każdej misji.",guest:"⚔ Graj jako gość",account:"Utwórz konto / Zaloguj się",note:"Bez płatności i pobierania. To darmowy wczesny prototyp.",xp:"XP",coins:"Monety",boss:"Boss przed Tobą!",worldTitle:"🗺️ Królestwo Liczb",worldSub:"Twój pierwszy świat • Buduj pewność siebie, misja po misji",counting:"Wioska Liczenia",addition:"Dolina Dodawania",multiplication:"Góry Mnożenia",division:"Lochy Dzielenia",castle:"Zamek Liczb",startHere:"Zacznij tutaj",mission:"Misja matematyczna",unlock:"Odblokuj postępem",bossBattle:"Walka z bossem",challenge:"WYZWANIE MISJI",next:"Następne pytanie →",guestTitle:"🎮 Gość czy konto?",guestInfo:"Zagraj od razu jako gość. Utwórz profil demonstracyjny, aby zobaczyć, jak może działać konto gracza. Prototyp zapisuje postęp tylko w tej przeglądarce.",safeTitle:"🛡️ Projekt z myślą o rodzinach",safeInfo:"Pełna wersja będzie zawierać konta dzieci zarządzane przez rodziców, ustawienia prywatności i brak otwartego czatu. Demo nie zbiera ani nie wysyła danych osobowych.",createTitle:"Stwórz swoją postać",createInfo:"Wersja demonstracyjna: wpisz pseudonim, aby zobaczyć profil gracza. Konto nie jest tworzone online.",save:"Zapisz profil demo"},
-cy:{eyebrow:"MAE EICH ANTUR FATHEMATEGOL YN DECHRAU YMA",headline1:"Chwarae.",headline2:"Dysgu. Symud ymlaen.",intro:"Archwiliwch fydoedd hudolus, datryswch heriau a datblygwch eich sgiliau mathemateg.",guest:"⚔ Chwarae fel Gwestai",account:"Creu Cyfrif / Mewngofnodi",note:"Dim taliad na lawrlwytho. Prototeip cynnar am ddim.",xp:"XP",coins:"Darnau",boss:"Pennaeth o'ch blaen!",worldTitle:"🗺️ Teyrnas y Rhifau",worldSub:"Eich byd cyntaf • Adeiladwch hyder, un genhadaeth ar y tro",counting:"Pentref Cyfrif",addition:"Dyffryn Adio",multiplication:"Mynyddoedd Lluosi",division:"Dwnsiwn Rhannu",castle:"Castell y Rhifau",startHere:"Dechreuwch yma",mission:"Cenhadaeth fathemateg",unlock:"Datgloi drwy gynnydd",bossBattle:"Brwydr bos",challenge:"HER CENHADAETH",next:"Cwestiwn nesaf →",guestTitle:"🎮 Gwestai neu gyfrif?",guestInfo:"Rhowch gynnig ar y gêm fel gwestai. Mae'r prototeip yn cadw cynnydd yn y porwr hwn yn unig.",safeTitle:"🛡️ Wedi'i gynllunio gyda theuluoedd mewn golwg",safeInfo:"Bydd y cynnyrch llawn yn cynnwys cyfrifon plant dan reolaeth rhieni a gosodiadau preifatrwydd. Nid yw'r demo hwn yn anfon data personol.",createTitle:"Creu eich anturiaethwr",createInfo:"Demo yn unig: rhowch lysenw. Ni chaiff cyfrif ar-lein ei greu.",save:"Cadw proffil demo"}
-};
 const $=id=>document.getElementById(id);
-let xp=Number(localStorage.getItem("mq_xp")||0),coins=Number(localStorage.getItem("mq_coins")||0),player=localStorage.getItem("mq_player")||"";
-function refresh(){ $("xp").textContent=xp;$("coins").textContent=coins;$("profilePill").textContent=player?player:"Guest mode"; }
-refresh();
-$("language").addEventListener("change",e=>{const t=translations[e.target.value]||translations.en;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(t[k])el.textContent=t[k]});document.documentElement.lang=e.target.value;});
-$("guestBtn").onclick=()=>{player="";localStorage.removeItem("mq_player");refresh();$("gamePanel").classList.add("show");$("gamePanel").scrollIntoView({behavior:"smooth"});startMission("count");};
-$("accountBtn").onclick=()=>$("modal").classList.add("show");
-$("closeModal").onclick=()=>$("modal").classList.remove("show");
-$("saveProfile").onclick=()=>{const n=$("nickname").value.trim();if(!n){$("nickname").focus();return}player=n;localStorage.setItem("mq_player",player);refresh();$("modal").classList.remove("show");$("gamePanel").classList.add("show");$("gamePanel").scrollIntoView({behavior:"smooth"});startMission("count");};
-const missions={
-count:{name:"Counting Village",qs:[["What is 6 + 7?",["12","13","14","15"],1],["Which number is greatest?",["38","83","60","63"],1],["What is 5 × 2?",["7","10","12","15"],1]]},
-add:{name:"Addition Valley",qs:[["What is 24 + 18?",["32","40","42","44"],2],["What is 135 + 27?",["152","162","172","182"],1],["A chest has 16 gems and you find 9 more. How many?",["23","24","25","26"],2]]},
-multi:{name:"Multiplication Mountains",qs:[["What is 7 × 8?",["54","56","60","64"],1],["What is 12 × 4?",["36","42","48","52"],2],["What is 9 × 6?",["45","54","56","63"],1]]},
-division:{name:"Division Dungeon",qs:[["What is 36 ÷ 6?",["5","6","7","8"],1],["What is 48 ÷ 8?",["4","5","6","7"],2],["Share 35 coins equally between 5 heroes. Each gets…",["5","6","7","8"],2]]},
-boss:{name:"Number Castle — Dragon Challenge",qs:[["The dragon guards 8 × 9 coins. How many?",["63","72","81","89"],1],["Solve: 100 − 37",["53","63","73","83"],1],["The dragon has 24 HP. Deal 6 damage each turn. How many turns?",["3","4","5","6"],1]]}
-};
-let current=null,qIndex=0,correct=0;
-function startMission(id){current=missions[id]||missions.count;qIndex=0;correct=0;$("missionName").textContent=current.name;renderQuestion();}
-function renderQuestion(){const q=current.qs[qIndex];$("questionCount").textContent=`Question ${qIndex+1} / ${current.qs.length}`;$("progressBar").style.width=((qIndex)/current.qs.length*100)+"%";$("question").textContent=q[0];$("feedback").textContent="";$("nextBtn").style.display="none";$("answers").innerHTML="";q[1].forEach((a,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=a;b.onclick=()=>choose(i);$("answers").appendChild(b)});}
-function choose(i){const q=current.qs[qIndex];document.querySelectorAll(".answer").forEach(b=>b.disabled=true);if(i===q[2]){correct++;xp+=10;coins+=3;$("feedback").textContent="✨ Correct! +10 XP · +3 coins";}else{$("feedback").textContent="Good try! The correct answer is "+q[1][q[2]]+".";}localStorage.setItem("mq_xp",xp);localStorage.setItem("mq_coins",coins);refresh();$("nextBtn").style.display="inline-block";$("nextBtn").textContent=qIndex===current.qs.length-1?"Finish mission":"Next question →";}
-$("nextBtn").onclick=()=>{if(qIndex<current.qs.length-1){qIndex++;renderQuestion()}else{$("progressBar").style.width="100%";$("question").textContent=`Mission complete! You got ${correct} out of ${current.qs.length} correct.`;$("answers").innerHTML="";$("feedback").textContent="🏅 Keep going — your next quest awaits!";$("nextBtn").style.display="none";}};
-document.querySelectorAll("[data-mission]").forEach(b=>b.onclick=()=>{if(b.classList.contains("locked")){alert("Complete earlier quests to unlock this location in the full game.");return}$("gamePanel").classList.add("show");$("gamePanel").scrollIntoView({behavior:"smooth"});startMission(b.dataset.mission);});
+let state={pet:'🐶',treats:0,xp:0,fed:0,stage:'Junior'};
+try{const saved=JSON.parse(localStorage.getItem('mathquest-demo'));if(saved)state={...state,...saved}}catch(e){}
+let a=3,b=4,answered=false;
+function save(){localStorage.setItem('mathquest-demo',JSON.stringify(state));render()}
+function render(){
+$('petFace').textContent=state.pet;$('treats').textContent=state.treats;$('xp').textContent=state.xp;$('fed').textContent=state.fed;
+$('levelLabel').textContent='MathQuest '+state.stage;
+$('stageNote').textContent=state.stage==='Junior'?'Junior mode: earn one treat for every correct answer.':'Explorer mode: earn XP for every correct answer.';
+$('feedBtn').disabled=state.stage!=='Junior'||state.treats<1;
+$('upgradeBtn').disabled=state.stage!=='Junior';
+document.querySelectorAll('.pet').forEach(btn=>btn.classList.toggle('selected',btn.dataset.pet===state.pet));
+}
+function newQuestion(){a=Math.floor(Math.random()*10)+1;b=Math.floor(Math.random()*10)+1;answered=false;$('question').textContent=`${a} + ${b} = ?`;$('answer').value='';$('feedback').textContent='';$('checkBtn').disabled=false}
+document.querySelectorAll('.pet').forEach(btn=>btn.addEventListener('click',()=>{state.pet=btn.dataset.pet;save()}));
+$('checkBtn').addEventListener('click',()=>{
+ if(answered)return;const val=Number($('answer').value);
+ if($('answer').value.trim()===''){$('feedback').textContent='Type your answer first 🙂';return}
+ if(val===a+b){answered=true;if(state.stage==='Junior')state.treats++;else state.xp+=10;$('feedback').textContent=state.stage==='Junior'?'🎉 Correct! You earned a treat for your pet!':'🌟 Correct! You earned 10 XP!';$('checkBtn').disabled=true;save()}
+ else $('feedback').textContent='Not quite — try again! 💪';
+});
+$('nextBtn').addEventListener('click',newQuestion);
+$('feedBtn').addEventListener('click',()=>{if(state.stage==='Junior'&&state.treats>0){state.treats--;state.fed++;$('feedback').textContent=`Yum! ${state.pet} loved the treat!`;save()}});
+$('upgradeBtn').addEventListener('click',()=>{if(state.stage==='Junior'){state.xp+=state.treats*5;state.treats=0;state.stage='Explorer';$('feedback').textContent='🚀 Welcome to Explorer! Your leftover treats became XP (5 XP each).';save()}});
+render();newQuestion();
 </script>
-</body>
-</html>
+</body></html>
